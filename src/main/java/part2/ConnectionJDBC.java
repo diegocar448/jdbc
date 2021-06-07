@@ -6,16 +6,29 @@ import java.sql.SQLException;
 
 public class ConnectionJDBC {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         // 1 - NÃO ESQUECER DE BAIXAR O DRIVER PARA O BANCO DE DADOS QUE IRÁ UTILIZAR! (Como demonstrado na parte 1 do curso)
+
+        /*String urlConnection = "jdbc:mysql://localhost/digital_innovation_one";
+
+        try(Connection conn = DriverManager.getConnection(urlConnection, "root", "root")){
+            System.out.println("Sucesso");
+        }catch (Exception e){
+            System.out.println("Falha");
+        }*/
+
+//-------------------------------------------------------------------------------------------------------------------
+
+
+
 
         // 2 - Definir parâmetros para se conectar ao banco de dados MySQL.
         String driver = "mysql";
         String dataBaseAddress = "localhost";
         String dataBaseName = "digital_innovation_one";
         String user = "root";
-        String password = "password";
+        String password = "root";
 
         // 3 - Construção da string de conexão.
         StringBuilder sb = new StringBuilder("jdbc:")
