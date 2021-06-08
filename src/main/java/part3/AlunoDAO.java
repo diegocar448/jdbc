@@ -11,8 +11,49 @@ public class AlunoDAO {
 
     // 1 - Consulta
     public List<Aluno> list() {
-        //Preparar lista que irá retornar alunos após consultar o banco de dados;
+
         List<Aluno> alunos = new ArrayList<>();
+
+        /*Pegamos a conexão*/
+        try(Connection conn = ConnectionFactory.getConnection()){
+
+            PreparedStatement prst = conn.prepareCall("SELECT * FROM aluno");
+
+            ResultSet rs = prst.executeQuery();
+
+            while(rs.next()){
+                Aluno aluno = new Aluno(rs.getInt("id"),
+                                rs.getString("nome"),
+                                rs.getInt("idade"),
+                                rs.getString("estado")
+                );
+
+                alunos.add(aluno);
+            }
+
+        }catch(Exception e){
+
+        }
+
+
+
+        return alunos;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Preparar lista que irá retornar alunos após consultar o banco de dados;
+        /*List<Aluno> alunos = new ArrayList<>();
 
         try (Connection conn = ConnectionFactory.getConnection()) {
             //Preparar consulta SQL.
@@ -44,7 +85,7 @@ public class AlunoDAO {
         }
 
         //Retornar todos os alunos encontrados no banco de dados.
-        return alunos;
+        return alunos;*/
     }
 
     // 1.1 - Consulta com filtro
